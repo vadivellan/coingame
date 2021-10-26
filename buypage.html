@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Myntra - End of Reason Sale</title>
+	<meta name="viewport" content="width=device-width, initial-scale=0.4, maximum-scale=0.4, user-scalable=0.4">	
+	<link href="data:image/x-icon;base64,AAABAAEAEBAAAAEAGABoAwAAFgAAACgAAAAQAAAAIAAAAAEAGAAAAAAAAAMAAGEPAABhDwAAAAAAAAAAAAD9//7////+/v7////////9/////v////////////////79/////v////////79///////+//39//////79//////////7//v///v/+/v7////9//7///7//v/9//7//v///////v/+//3//v/9//////7///7///7//v39///+/f/+/v7//////v///////v+fd8VuLqaYb8D//f39/////v+wy/0yRO8xQe6owfn//////v////6zV/KUEu25aPOVY7tiHZxhHp3byeb////3+v8/f/UlMe8nLu87a/L1+f7//v7gwPmKAeyKAe2xTvCkfchjIKFiH6CbaMD9//yy0f4hdPUjN/AkM+0hX/Oxx/v//v+zVPKOAeyNAO29cfTJst5jHaBkH55uKaL6+P5ppPojd/QhQ/AjOu4iYvBhlPT49vyYDu+LAOyMAezZqfvy6vVoKaVhH5xnG57Euug7ivkdd/QiWPIlSfEhYPA0dfXMrfiRAOyMAeyRCu706vv///+PY7xiH55oG5txZckke/kidPErdfMuYvIgX/AfZ/CGSPKRAeqMAeywT/P+//3////Qu+FlH6FnGppGNsMbdvkic/SCrvuEp/ciXvIcYvJdH+2RAeqMAO7ftvn9//////78+v95Rq5mHZk9Ms8ec/chc/bd6/3k6v0lYu4cX/BLI+2TAOyhMPD+/Pz///79///////Lst5oH500LdYhbfVupPn9//7///9umPgeW/FAI+6RAO3Yrfj9//7//f////7+/v7///+KVLcyKd0rcvjh7v7+/f/9///l7P0pYvM4Je6uQvL8/v7+/v7///7////////9///s4vJaVt6ryfj9//7//v///v////+wx/lqTPHv4Pv9/////v/////+/f////////7///////7//v/////9/////v/////+/v77//z//////////v37/////v/////7//7//v/9//7//v///v39//////79//////7//////f///////v/9//8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" rel="icon" type="image/x-icon">
+	<link rel="stylesheet" type="text/css" href="assets/css/ownstyle.css"></link>
+</head>
+<body>
+	<div class="intro-block">
+	
+		<!-- <div class="twinkling"></div> -->
+		<!-- Crazy Deal-->
+		<img src="assets/img/buyttl.png" alt="Early Entry" style="width: 100%;" />
+
+		<section >	
+
+
+
+		<div style="width: 100%;height: 100px; display: inline-block;">
+			<div style="display: inline-block;width: 40%; text-align: center;">
+				<div>1000</div>
+				<div>View purchases ></div>
+			</div>
+			<div style="display: inline-block;width: 19%;text-align: center;">
+				<div>Image</div>
+				<div>22nd-25th June</div>
+			</div>
+			<div style="display: inline-block;width: 40%;text-align: center;">
+				<div>Image</div>
+				<div>Earn Coins</div>
+			</div>
+		</div>
+			
+		</section>
+		
+
+		<section >	
+
+		<div style="width: 100%;">
+			<img src="assets/img/imagebox.png" alt="image_box" style="width: 100%;" />
+		</div>
+			
+		</section>
+
+
+		<section >	
+
+	
+
+		<div class="container">
+			<img class="imgA1" src="assets/img/wishastar.png"  style="width: 100%;">
+			<img class="imgB1" src="assets/img/twinkle-star.png">
+			<img class="imgB1" src="assets/img/twinkle-star.png" style="top: 150px; left: 300px;  animation-delay: 1s;">
+		</div>
+			
+		</section>
+
+		
+
+		<section class="crazy-deal-section">	
+			<img src="assets/img/crazy-deal.png" class="mynt-heading" />
+			<p class="mynt-desc">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+		</section>
+
+
+		
+		
+		
+
+	</div> 
+	<canvas id="game-area"></canvas>
+	<script src="lib/jquery.min-v3.3.1.js"></script>
+	<script src="lib/createjs.min.js"></script>	
+	<script src="src/shared/scripts/init.js"></script>	
+	<script src="lib/underscore.min-v1.9.0.js"></script>
+	<script src="src/app/presale/scripts/main.js"></script>
+	<script src="src/shared/scripts/services.js"></script>
+
+	<style type="text/css">
+		.container { position:relative; }
+.imgA1 { position:absolute; top: 0px; left: 0px; z-index: 1; } 
+.imgB1 { position:absolute; top: 600px; left: 100px; z-index: 3; 
+    -webkit-animation-name: example; /* Safari 4.0 - 8.0 */
+    -webkit-animation-duration: 4s; /* Safari 4.0 - 8.0 */
+    animation-name: example;
+    animation-duration: 2s;
+        width: 200px;
+      animation-iteration-count: infinite;animation-timing-function: ease-in; } 
+
+    @keyframes example {
+    0%   {top:600px;}
+    100% { top:1000px; width:100px;}
+}
+	</style>
+</body>
+</html>

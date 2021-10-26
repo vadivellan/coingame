@@ -1,0 +1,710 @@
+*{ margin: 0; padding: 0;}
+body {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	overflow-x: hidden;
+	background-color: #100933;
+	font-size: 14px;
+	position: relative;
+}
+/* Common Reusable CSS Properties */
+.text-center{
+	text-align: center;
+}
+.m-50{
+	margin-top:50px !important;
+}
+.m-100{
+	margin-top:100px !important;
+}
+.m-200{
+	margin-top:200px !important;
+}
+.m-300{
+	margin-top:300px !important;
+}
+.a-d-2{
+	animation-delay:2.5s !important;
+}
+.a-d-20{
+	animation-delay:20s !important;
+}
+.a-d-30{
+	animation-delay:30s !important;
+}
+.mynt-heading{
+	/* Heading 2 must*/
+	/* Sub Heading 3 must*/
+	text-align: center;
+	text-transform: uppercase;
+	width: 35%;
+	display: block;
+	margin: auto;
+}
+.mynt-desc{
+	font-size: 25px;
+    line-height: 1.29;
+    text-align: center;
+    width: 80%;
+    display: block;
+    margin: auto;
+    color: #af7fdf;
+}
+.mynt-small-note{
+	text-align: center;
+	font-size: 10px;
+	line-height: 1.5;
+}
+.mynt-btn{
+	background-color: #b481aa;
+	border-radius: 5px;
+	padding: 10px 20px;
+	min-width: 120px;
+	color:#230e4f;
+	cursor: pointer;
+	outline: none;
+	border:none;
+	display: block;
+	margin: auto;
+}
+.mynt-btn:focus ~ .mynt-buyslot-image
+{
+	
+}
+
+.mynt-btn:hover ~ .mynt-buyslot-image
+{
+	
+	-webkit-animation: flipHeads 3s ease-out forwards;
+	-moz-animation: flipHeads 3s ease-out forwards;
+	  -o-animation: flipHeads 3s ease-out forwards;
+		 animation: flipHeads 3s ease-out forwards;
+	
+}
+/* End of Common Reusable CSS Properties */
+
+/* Intro Gradient Block */
+.intro-block{
+	background: rgba(65,41,137,1);
+	background: -moz-linear-gradient(top, rgba(65,41,137,1) 0%, rgba(179,114,146,1) 15%, rgba(100,35,141,1) 30%, rgba(55,28,105,1) 53%, rgba(34,19,76,1) 71%, rgba(16,9,51,1) 100%);
+	background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(65,41,137,1)), color-stop(15%, rgba(179,114,146,1)), color-stop(30%, rgba(100,35,141,1)), color-stop(53%, rgba(55,28,105,1)), color-stop(71%, rgba(34,19,76,1)), color-stop(100%, rgba(16,9,51,1)));
+	background: -webkit-linear-gradient(top, rgba(65,41,137,1) 0%, rgba(179,114,146,1) 15%, rgba(100,35,141,1) 30%, rgba(55,28,105,1) 53%, rgba(34,19,76,1) 71%, rgba(16,9,51,1) 100%);
+	background: -o-linear-gradient(top, rgba(65,41,137,1) 0%, rgba(179,114,146,1) 15%, rgba(100,35,141,1) 30%, rgba(55,28,105,1) 53%, rgba(34,19,76,1) 71%, rgba(16,9,51,1) 100%);
+	background: -ms-linear-gradient(top, rgba(65,41,137,1) 0%, rgba(179,114,146,1) 15%, rgba(100,35,141,1) 30%, rgba(55,28,105,1) 53%, rgba(34,19,76,1) 71%, rgba(16,9,51,1) 100%);
+	background: linear-gradient(to bottom, rgba(65,41,137,1) 0%, rgba(179,114,146,1) 15%, rgba(100,35,141,1) 30%, rgba(55,28,105,1) 53%, rgba(34,19,76,1) 71%, rgba(16,9,51,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#412989', endColorstr='#100933', GradientType=0 );
+}
+/* Twinkling Stars Repeat */
+.twinkle-star{
+	z-index:6;
+	-moz-animation:move-twink-back 2s linear infinite;
+	-ms-animation:move-twink-back 2s linear infinite;
+	-o-animation:move-twink-back 2s linear infinite;
+	-webkit-animation:move-twink-back 2s linear infinite;
+	animation:move-twink-back 2s linear infinite;
+	position: absolute;
+}
+/* Twinkling Stars Animate Keyframe */
+@keyframes move-twink-back {
+	0% {opacity: 1;}
+	10% {opacity: 0.8;}
+	20% {opacity: 0.6;}
+	30% {opacity: 0.4;}
+	40% {opacity: 0.2;}
+	50% {opacity: 0;}
+	60% {opacity: 0.2;}
+	70% {opacity: 0.4;}
+	80% {opacity: 0.6;}
+	90% {opacity: 0.8;}
+	100% {opacity: 1;}
+}
+@-webkit-keyframes move-twink-back {
+	0% {opacity: 1;}
+	10% {opacity: 0.8;}
+	20% {opacity: 0.6;}
+	30% {opacity: 0.4;}
+	40% {opacity: 0.2;}
+	50% {opacity: 0;}
+	60% {opacity: 0.2;}
+	70% {opacity: 0.4;}
+	80% {opacity: 0.6;}
+	90% {opacity: 0.8;}
+	100% {opacity: 1;}
+}
+@-moz-keyframes move-twink-back {
+	0% {opacity: 1;}
+	10% {opacity: 0.8;}
+	20% {opacity: 0.6;}
+	30% {opacity: 0.4;}
+	40% {opacity: 0.2;}
+	50% {opacity: 0;}
+	60% {opacity: 0.2;}
+	70% {opacity: 0.4;}
+	80% {opacity: 0.6;}
+	90% {opacity: 0.8;}
+	100% {opacity: 1;}
+}
+@-o-keyframes move-twink-back {
+	0% {opacity: 1;}
+	10% {opacity: 0.8;}
+	20% {opacity: 0.6;}
+	30% {opacity: 0.4;}
+	40% {opacity: 0.2;}
+	50% {opacity: 0;}
+	60% {opacity: 0.2;}
+	70% {opacity: 0.4;}
+	80% {opacity: 0.6;}
+	90% {opacity: 0.8;}
+	100% {opacity: 1;}
+}
+/* Bright Lamp */
+.bright-lamp{
+	z-index:6;
+	-webkit-animation:bright-lamp-animation 3s ease-in-out infinite;
+	-moz-animation:bright-lamp-animation 3s ease-in-out infinite;
+	-o-animation:bright-lamp-animation 3s ease-in-out infinite;
+	animation:bright-lamp-animation 3s ease-in-out infinite;
+	position: absolute;	
+}
+/* Bright Lamp Animation Keyframe*/
+@keyframes bright-lamp-animation {
+	0%,100%{ transform:translateY(0) rotate(10deg);}
+	50%{ transform:translateY(0) rotate(-10deg); }
+	
+}
+@-webkit-keyframes bright-lamp-animation {
+	0%,100%{ -webkit-transform:translateY(0) rotate(10deg);}
+	50%{ -webkit-transform:translateY(0) rotate(-10deg); }
+}
+@-moz-keyframes bright-lamp-animation {
+	0%,100%{ -moz-transform:translateY(0) rotate(10deg);}
+	50%{ -moz-transform:translateY(0) rotate(-10deg); }
+}
+@-o-keyframes bright-lamp-animation {
+	0%,100%{ -o-transform:translateY(0) rotate(10deg);}
+	50%{ -o-transform:translateY(0) rotate(-10deg); }
+}
+
+.bottom-lamp-block{
+	position: relative;
+	min-height: 300px;
+}
+.bright-lamp-up{
+	z-index:6;
+	bottom: 0;
+	display: inline;
+	-webkit-animation:bright-lamp-up-animation 6s linear infinite;
+	-moz-animation:bright-lamp-up-animation 6s linear infinite;
+	-o-animation:bright-lamp-up-animation 6s linear infinite;
+	animation:bright-lamp-up-animation 6s linear infinite;
+}
+/* Bright Lamp Animation Keyframe*/
+@keyframes bright-lamp-up-animation {
+	0% {opacity: 0.1;margin-top: 0;position: relative;}
+	10% {opacity: 0.2;}
+	20% {opacity: 0.4;}
+	30% {opacity: 0.6;}
+	40% {opacity: 0.8;}
+	50% {opacity: 1;}
+	60% {opacity: 0.8;}
+	70% {opacity: 0.6;}
+	80% {opacity: 0.4;}
+	90% {opacity: 0.2;}
+	100% {opacity: 0;margin-top:-5%;position: relative;}
+}
+@-webkit-keyframes bright-lamp-up-animation {
+	0% {opacity: 0.1;margin-top: 0;position: relative;}
+	10% {opacity: 0.2;}
+	20% {opacity: 0.4;}
+	30% {opacity: 0.6;}
+	40% {opacity: 0.8;}
+	50% {opacity: 1;}
+	60% {opacity: 0.8;}
+	70% {opacity: 0.6;}
+	80% {opacity: 0.4;}
+	90% {opacity: 0.2;}
+	100% {opacity: 0;margin-top:-5%;position: relative;}
+}
+@-moz-keyframes bright-lamp-up-animation {
+	0% {opacity: 0.1;margin-top: 0;position: relative;}
+	10% {opacity: 0.2;}
+	20% {opacity: 0.4;}
+	30% {opacity: 0.6;}
+	40% {opacity: 0.8;}
+	50% {opacity: 1;}
+	60% {opacity: 0.8;}
+	70% {opacity: 0.6;}
+	80% {opacity: 0.4;}
+	90% {opacity: 0.2;}
+	100% {opacity: 0;margin-top:-5%;position: relative;}
+}
+@-o-keyframes bright-lamp-up-animation {
+	0% {opacity: 0.1;margin-top: 0;position: relative;}
+	10% {opacity: 0.2;}
+	20% {opacity: 0.4;}
+	30% {opacity: 0.6;}
+	40% {opacity: 0.8;}
+	50% {opacity: 1;}
+	60% {opacity: 0.8;}
+	70% {opacity: 0.6;}
+	80% {opacity: 0.4;}
+	90% {opacity: 0.2;}
+	100% {opacity: 0;margin-top:-5%;position: relative;}
+}
+
+
+/* Party Ballon Animate*/
+.party-ballon-overlay-link{
+	z-index: 4;
+    position: absolute;
+    top: 22%;
+    background: transparent;
+    width: 70%;
+    left: 16%;
+}
+.anchor-link{
+	height: 220px;
+    display: block;
+}
+.party-baloon{
+	position: relative;
+	display: block;
+	width: 80%;
+	margin: auto;
+	top:50px;
+	z-index: 3;	
+	box-shadow:inset 10px 10px 10px darken(#aaa, 10%);
+	-webkit-animation:animation-party-ballon 3s ease-in-out infinite;
+	-moz-animation:animation-party-ballon 3s ease-in-out infinite;
+	-o-animation:animation-party-ballon 3s ease-in-out infinite;
+	animation:animation-party-ballon 3s ease-in-out infinite;
+}
+/* Party Ballon Animation Keyframe*/
+@keyframes animation-party-ballon {
+	0%,100%{ transform:translateY(0) rotate(1deg);}
+	50%{ transform:translateY(0) rotate(-1deg); }
+	
+}
+@-webkit-keyframes animation-party-ballon {
+	0%,100%{ -webkit-transform:translateY(0) rotate(1deg);}
+	50%{ -webkit-transform:translateY(0) rotate(-1deg); }
+}
+@-moz-keyframes animation-party-ballon {
+	0%,100%{ -moz-transform:translateY(0) rotate(1deg);}
+	50%{ -moz-transform:translateY(0) rotate(-1deg); }
+}
+@-o-keyframes animation-party-ballon {
+	0%,100%{ -o-transform:translateY(0) rotate(1deg);}
+	50%{ -o-transform:translateY(0) rotate(-1deg); }
+}
+
+/* Party Cloud Light */
+.cloud-block{
+	/* position: absolute; */
+	z-index: 3;
+	width: 100%;	
+	/* width: auto; */
+	overflow-x: hidden;
+	display: inline-block;
+}
+.cloud-light {
+	width: 240px;	
+	animation: animation-cloud 10s linear infinite;
+	-webkit-animation: animation-cloud 10s linear infinite;
+	-moz-animation: animation-cloud 10s linear infinite;
+	-o-animation: animation-cloud 10s linear infinite;
+	position: absolute;
+}
+/* Party Cloud Strong */
+.cloud-strong {
+	width: 240px;
+	animation: animation-cloud 15s linear infinite;
+	-webkit-animation: animation-cloud 	15s linear infinite;
+	-moz-animation: animation-cloud 15s linear infinite;
+	-o-animation: animation-cloud 15s linear infinite;
+	position: absolute;
+	
+}
+
+/* Party Cloud Animate Keyframe */
+@keyframes animation-cloud {
+	from {margin-left: 100%;}
+	to {margin-left: -100%;}
+}
+@-webkit-keyframes animation-cloud {
+	from {margin-left: 100%;}
+	to {margin-left: -100%;}
+}
+@-moz-keyframes animation-cloud {
+	from {margin-left: 100%;}
+	to {margin-left: -100%;}
+}
+@-o-keyframes animation-cloud {
+	from {margin-left: 100%;}
+	to {margin-left: -100%;}
+}
+
+/* Crazy Deal && Rope Car */
+.crazy-deal-section{
+
+}
+.mynt-rope{
+	margin-top: 50px;
+	-webkit-transform: rotate(-8deg); 
+	-ms-transform: rotate(-8deg);
+	-o-transform: rotate(-8deg);
+	transform: rotate(-8deg);	
+	padding: 4px;
+	outline: none;
+	background: #222222;
+	position: absolute;
+	display: block;
+	width: 100%;
+	border: none;
+}
+.mynt-ropecar-container {
+	width: 100%;
+	height: 670px;
+	white-space:nowrap;
+
+		
+	/* -webkit-animation: animation-rope-car 0s linear infinite;
+	-moz-animation: animation-rope-car 0s linear infinite;
+	-o-animation: animation-rope-car 0s linear infinite; */
+	
+	/* animation-delay: 1s; */
+	
+	
+	
+	transform: rotate(-8deg) !important;
+}
+
+.mynt-ropecar-container .slide {
+	display: inline-block;
+	margin-left: 70px;
+}
+.mynt-ropecar-container-carsone
+{
+	animation: animation-rope-cars-one  0s linear infinite;
+	animation-duration: 3s;
+	margin-top: 30px;
+	
+
+}
+.mynt-ropecar-container-carstwo
+{
+	animation: animation-rope-cars-two  0s linear infinite;
+	animation-duration: 3s;
+	
+	
+	margin-top: -620px;
+}
+.mynt-ropecar-container-carstwo .sildeone
+{
+	margin-left: 10%;
+}
+
+/* Rope Car Animate Keyframe */
+@keyframes animation-rope-cars-one {
+	0% {
+		transform:  translate(0%,0)    ;
+		
+	}
+	
+	100% {
+		transform:  translate(-1520px,0px)    ;
+		
+	}
+	
+}
+@keyframes animation-rope-cars-two {
+	0% {
+		transform:  translate(1520px,0%)    ;
+		
+	}
+	
+	100% {
+		transform:  translate(0%,0px)    ;
+		
+	}
+	
+}
+@keyframes animation-rope-car {
+	0% {
+		transform:  translate(100%,200px)  rotate(-7.86 deg) ;
+		margin-left: 100%;
+	}
+	10% {
+		transform:  translate(90%,300px)  rotate(-7.86deg) ;
+	}
+	20% {
+		transform:  translate(80%,105px)  rotate(-7.86deg) ;
+	}
+	30% {
+		transform:  translate(70%,110px)  rotate(-7.86deg) ;
+	}
+	40% {
+		transform:  translate(60%,115px)  rotate(-7.86deg) ;
+	}
+	50% {
+		transform:  translate(50%,120px)  rotate(-7.86deg) ;
+	}
+	60% {
+		transform:  translate(40%,130px)  rotate(-7.86deg) ;
+	}
+	70% {
+		transform:  translate(30%,160px)  rotate(-7.86deg) ;
+	}
+	80% {
+		transform:  translate(20%,180px)  rotate(-7.86deg) ;
+	}
+	90% {
+		transform:  translate(10%,220px)  rotate(-7.86deg) ;
+	}
+	100% {
+		transform:  translate(0,260px)  rotate(-7.86deg) ;
+		margin-left: -100%;
+	}
+	
+}
+@-webkit-keyframes animation-rope-car {
+	0% {
+		transform:  translate(100%,-5px)  rotate(0deg) ;
+	}
+	10% {
+		transform:  translate(90%,-10px)  rotate(1deg) ;
+	}
+	20% {
+		transform:  translate(80%,-20px)  rotate(2deg) ;
+	}
+	30% {
+		transform:  translate(70%,-30px)  rotate(3deg) ;
+	}
+	40% {
+		transform:  translate(60%,-40px)  rotate(4deg) ;
+	}
+	50% {
+		transform:  translate(50%,-50px)  rotate(5deg) ;
+	}
+	60% {
+		transform:  translate(40%,-60px)  rotate(6deg) ;
+	}
+	70% {
+		transform:  translate(30%,-70px)  rotate(7deg) ;
+	}
+	80% {
+		transform:  translate(20%,-80px)  rotate(8deg) ;
+	}
+	90% {
+		transform:  translate(10%,-90px)  rotate(9deg) ;
+	}
+	100% {
+		transform:  translate(0,-100px)  rotate(10deg) ;
+	}
+}
+@-moz-keyframes animation-rope-car {
+	0% {
+		transform:  translate(100%,-5px)  rotate(0deg) ;
+	}
+	10% {
+		transform:  translate(90%,-10px)  rotate(1deg) ;
+	}
+	20% {
+		transform:  translate(80%,-20px)  rotate(2deg) ;
+	}
+	30% {
+		transform:  translate(70%,-30px)  rotate(3deg) ;
+	}
+	40% {
+		transform:  translate(60%,-40px)  rotate(4deg) ;
+	}
+	50% {
+		transform:  translate(50%,-50px)  rotate(5deg) ;
+	}
+	60% {
+		transform:  translate(40%,-60px)  rotate(6deg) ;
+	}
+	70% {
+		transform:  translate(30%,-70px)  rotate(7deg) ;
+	}
+	80% {
+		transform:  translate(20%,-80px)  rotate(8deg) ;
+	}
+	90% {
+		transform:  translate(10%,-90px)  rotate(9deg) ;
+	}
+	100% {
+		transform:  translate(0,-100px)  rotate(10deg) ;
+	}
+}
+@-o-keyframes animation-rope-car {
+	0% {
+		transform:  translate(100%,-5px)  rotate(0deg) ;
+	}
+	10% {
+		transform:  translate(90%,-10px)  rotate(1deg) ;
+	}
+	20% {
+		transform:  translate(80%,-20px)  rotate(2deg) ;
+	}
+	30% {
+		transform:  translate(70%,-30px)  rotate(3deg) ;
+	}
+	40% {
+		transform:  translate(60%,-40px)  rotate(4deg) ;
+	}
+	50% {
+		transform:  translate(50%,-50px)  rotate(5deg) ;
+	}
+	60% {
+		transform:  translate(40%,-60px)  rotate(6deg) ;
+	}
+	70% {
+		transform:  translate(30%,-70px)  rotate(7deg) ;
+	}
+	80% {
+		transform:  translate(20%,-80px)  rotate(8deg) ;
+	}
+	90% {
+		transform:  translate(10%,-90px)  rotate(9deg) ;
+	}
+	100% {
+		transform:  translate(0,-100px)  rotate(10deg) ;
+	}
+}
+
+/* Early Entry */
+.early-entry-section{
+
+}
+.mynt-entry-door{
+	width: 100%;
+	margin: auto;
+}
+/* Buy Slot */
+.buy-slot-section{
+
+}
+.mynt-buyslot-image{
+	min-height: 260px;
+	display: block;
+    margin: auto;
+}
+.mynt-buyslot-image:hover {
+   
+}
+@-webkit-keyframes flipHeads {
+	from { -webkit-transform: rotateY(0); -moz-transform: rotateY(0); transform: rotateY(0); }
+	to { -webkit-transform: rotateY(1800deg); -moz-transform: rotateY(1800deg); transform: rotateY(1800deg); }
+  }
+/* Earn Coin && Games List */
+.earn-coin-section{
+
+}
+.brands{
+	width: 100%;
+	display: block;
+	margin: auto;
+}
+.game-block{
+	display: flex;
+	justify-content: center;
+}
+
+.mynt-game-b1{
+	width: 100%;
+	min-height: 100px;
+	display: block;
+	margin: auto;
+}
+.mynt-game-b2{
+	width: 100%;
+	min-height: 100px;
+	display: block;
+	margin: auto;
+	margin-top:180px;
+}
+
+/* Category  START*/
+.mynt-category-card-img{
+	width:100%;
+	position: absolute;
+	margin-top: 30px;
+}
+
+.mynt-category-card-tiles{
+	margin: 38% 0% 0% 10%;
+	position: absolute;
+	width: 90%;
+}
+.mynt-category-card-tile-div{
+	width: 38%;
+    display: inline-block;
+	margin: 0% 0% 5% 4.6%;
+	cursor: pointer;
+}
+
+ .mynt-category-title{
+	font-size: 32px;
+    color: black;
+    text-align: center;
+    position: relative;
+    display: block;
+    margin-top: -17%;
+ }
+.mynt-category-tile-image{
+	display: block;
+    margin: auto;
+	width: 100%;
+}
+/* CATEGORY END */
+
+.column {
+    float: left;
+    width: 31%;
+    padding: 1%;
+}
+
+/* Clearfix (clear floats) */
+.row::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+/* Popup Block */
+.popup-overlay{
+	height: 100%;
+    width: 100%;
+    position: fixed;
+    z-index: 100;
+    left: 0;
+    top: 0;
+    background-color: rgba(0,0,0, 0.7);
+    overflow-x: hidden;
+	transition: 0.5s; 
+}
+.popup-container {
+	position: relative;
+    z-index: 101; /* Sit on top */	
+    top: 25%; 
+	width: 80%; 
+	min-height: 200px;
+	color:#fff;
+	border-radius: 10px;
+	background-color: #381e6b;
+	margin: auto;
+	border:1px solid #381e6b;
+}
+.dom-container{
+	padding: 50px;
+}
+.close-popup{
+	float: right;
+	display: inline-block;
+	background-color: #000;
+	font-weight: 700;
+	color:#fff;
+	font-size: 20px;
+}

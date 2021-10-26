@@ -1,0 +1,1217 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Flappy Ballon</title>
+        <meta name="viewport" content="width=768">
+        <script src="http://www.createjs.com/Demos/EaselJS/assets/preloadjs-NEXT.min.js"></script>
+        <script src="https://code.createjs.com/1.0.0/createjs.js"></script>
+        <script src="ndgmr.Collision.js"></script>
+        <!-- http://www.dafont.com/04b-19.font?text=Flappy+Bird -->
+
+        <style type="text/css">
+
+            @font-face {
+                font-family: 'Flappy Bird';
+                src: url('fonts/FB.eot');
+                src: url('fonts/FB.eot?#iefix') format('embedded-opentype'),
+                     url('fonts/FB.woff') format('woff'),
+                     url('fonts/FB.ttf') format('truetype'),
+                     url('fonts/FB.svg#04b_19regular') format('svg');
+                font-weight: normal;
+                font-style: normal;
+            }
+            @font-face {
+                font-family: 'Quicksand';
+                src: url('../../../assets/fonts/Quicksand/Quicksand-Regular.otf');
+                font-weight: normal;
+                font-style: normal;
+            }
+            @font-face {
+                font-family: 'OswaldMedium';
+                src: url('../../../assets/fonts/Oswald/Oswald-Medium.ttf');
+                font-weight: normal;
+                font-style: normal;
+            }
+            @font-face {
+                font-family: 'ProximaNovaRegular';
+                src: url('../../../assets/fonts/Proxima-nova/ProximaNovaRegular.ttf');
+                font-weight: normal;
+                font-style: normal;
+            }
+            @font-face {
+                font-family: 'ProximaNovaSemibold';
+                src: url('../../../assets/fonts/Proxima-nova/ProximaNova-Semibold.ttf');
+                font-weight: normal;
+                font-style: normal;
+            }
+            @font-face {
+                font-family: 'MontserratBold';
+                src: url('../../../assets/fonts/Montserrat/Montserrat-Bold.otf');
+                font-weight: normal;
+                font-style: normal;
+            }
+            @font-face {
+                font-family: 'Montserrat-Regular';
+                src: url('../../../assets/fonts/Montserrat/Montserrat-Regular.otf');
+                font-weight: normal;
+                font-style: normal;
+            }
+            @font-face {
+                font-family: 'Montserrat-SemiBold';
+                src: url('../../../assets/fonts/Montserrat/Montserrat-SemiBold.otf');
+                font-weight: normal;
+                font-style: normal;
+            }
+
+            
+            body, html {
+                margin: 0px;
+                padding: 0px;
+                text-align: center;
+                height: 100%;
+            }
+            canvas {
+                margin-bottom: -4px;
+                height: 100%;
+            }
+            #container {
+          
+            border: 1px solid red;
+            
+            
+            margin: 0px auto;
+            text-align: center;
+            }
+
+            #canvas {
+            border: 1px solid blue;
+           
+            }
+        </style>
+         <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+
+<script>
+    $(document).ready(function(){
+  
+  
+  
+                 var canvas = document.querySelector('canvas');
+  
+                 function resize() {
+                     // Our canvas must cover full height of screen
+                     // regardless of the resolution
+                    //  var height = window.innerHeight;
+                     
+                    //  // So we need to calculate the proper scaled width
+                    //  // that should work well with every resolution
+                    //  var ratio = canvas.width/canvas.height;
+                    //  console.log("ratio==============",ratio);
+                    //  var width = height * ratio;
+                     
+                    // // canvas.style.width = width+'px';
+                    //  canvas.style.height = height+'px';
+                 }
+  
+                 window.addEventListener('load', resize, false);
+                 window.addEventListener('resize', resize, false);
+  
+  
+  });
+  
+  
+  
+   </script>
+
+        <script type="text/javascript">
+        
+            // http://createjs.com/#!/TweenJS/demos/sparkTable
+            // http://createjs.com/Docs/TweenJS/modules/TweenJS.html
+            // view-source:http://createjs.com/Demos/EaselJS/Game.html COPY THIS
+            var stage, w, h, loader, pipe1height, pipe2height, pipe3height, startX, startY, wiggleDelta;
+            var background, bird, ground, pipe, bottomPipe, pipes, rotationDelta, counter, counterOutline, coin, coins,container,introCointainer,levelCointainer,
+            home,ready,readycontainer,ReadyText,intro,diePage,playAgain,dieimage,canvas,level1Page,level2Page,level3Page,resumeAgain,introBg
+            ,footerImage,footerText;
+            var started = false; 
+            var startJump = false; // Has the jump started?
+
+            var jumpAmount = 120; // How high is the jump?
+            var jumpTime = 266;
+            var level1=false;
+            var level2=false;
+            var level3=false
+
+            var dead = false; // is the bird dead?
+            var KEYCODE_SPACE = 32;     //usefull keycode
+            var gap = 475;
+            var masterPipeDelay = 120; // delay between pipes
+            var pipeDelay = masterPipeDelay; //counter used to monitor delay
+
+            var ON_MOUSE_DOWN = 0;
+            var ON_MOUSE_UP = 1;
+            var ON_MOUSE_OVER = 2;
+            var ON_MOUSE_OUT = 3;
+
+            var counterShow = false;
+            var afterlevel=false;
+            var deltamsvalue=1000
+
+
+            document.onkeydown = handleKeyDown;
+
+            var footerTextValue="End of Reason Sale begins on 22nd June, stay tuned!";
+            var introTitleValue="HOW TO PLAY";
+            var introSubtitle1Value="Collect the coins for the VIP Entry pass while tapping on your screen to keep the ballon from falling or coming in contact with the sharp rocks."
+            var introSubtitle2Value="Win extra points at the end of each level of the game"
+
+
+
+            
+
+           
+
+            function init() {
+                if (window.top != window) {
+                    document.getElementById("header").style.display = "none";
+                }
+
+
+                // createjs.MotionGuidePlugin.install();
+
+                stage = new createjs.Stage("testCanvas");
+
+                createjs.Touch.enable(stage);
+                // stage.canvas.width = document.body.clientWidth; //document.width is obsolete
+                // stage.canvas.height = document.body.clientHeight; //document.height is obsolete
+                
+                // grab canvas width and height for later calculations:
+                w = stage.canvas.width;
+                h = stage.canvas.height;
+
+                manifest = [
+                  
+                    {src:"img/background.png", id:"background"},
+                    {src:"img/ground.png", id:"ground"},
+                    {src:"img/pipe.png", id:"pipe"},
+                    {src:"img/coin.png", id:"coin"},
+                    {src:"img/coin2.png", id:"coin2"},
+                    {src:"img/coin5.png", id:"coin5"},
+                    {src:"img/coin10.png", id:"coin10"},
+                    {src:"img/ballon.png", id:"ballon"},
+                    {src:"img/balloondie.png",id:"ballondie"},
+                  
+                 
+                   
+                    {src:"../../../assets/img/eroscoins.png",id:"eorscoin"},
+                    {src:"../../../assets/img/footer.png",id:"footer"},
+                    {src:"../../../assets/img/big_button.png",id:"bigbutton"},
+                    {src:"../../../assets/img/small_button.png",id:"smallbutton"},
+                  
+                    {src:"img/ballonbig.png",id:"ballonbig"},
+                ];
+
+                loader = new createjs.LoadQueue(false);
+                loader.addEventListener("complete", handleComplete);
+                loader.loadManifest(manifest);
+            }
+
+            
+
+            function handleComplete() 
+            {
+               
+                
+               
+
+                background = new createjs.Shape();
+               // background.graphics.beginBitmapFill(loader.getResult("background")).drawRect(0,0,w,h);
+                 var backgroundImage=loader.getResult("background")
+
+                background.graphics.beginBitmapFill(backgroundImage, "repeat");
+                background.graphics.drawRect(0,0,w+backgroundImage.width,h);
+                
+                var groundImg = loader.getResult("ground");
+                ground = new createjs.Shape();
+                ground.graphics.beginBitmapFill(groundImg).drawRect(0, 0, w+groundImg.width, groundImg.height);
+                ground.tileW = groundImg.width;
+                background.tileW = backgroundImage.width;
+                ground.y = h;
+                
+            
+                var data = new createjs.SpriteSheet({
+                    "images": [loader.getResult("ballon")],
+                    //set center and size of frames, center is important for later bird roation
+                    "frames": {"width": 120, "height": 188, "regX": 60, "regY": 94, "count": 3}, 
+                    // define two animations, run (loops, 0.21x speed) and dive (returns to dive and holds frame one static):
+                    "animations": {"fly": [0, 2, "fly", 0.21], "dive": [1, 1, "dive", 1]}
+                });
+                bird = new createjs.Sprite(data, "fly");
+
+                startX = (w/2) - (92/2)
+                startY = 512
+                wiggleDelta = 18
+
+                // Set initial position and scale 1 to 1
+                bird.setTransform(startX, startY, 1, 1);
+                // Set framerate
+                bird.framerate = 30;
+                
+
+                //338, 512
+                // Use a tween to wiggle the bird up and down using a sineInOut Ease
+                createjs.Tween.get(bird, {loop:true}).to({y:startY + wiggleDelta}, 380, createjs.Ease.sineInOut).to({y:startY}, 380, createjs.Ease.sineInOut);
+
+                stage.addChild(background);
+
+                pipes = new createjs.Container(); 
+
+                dieimage  = new createjs.Bitmap(loader.getResult("ballondie"));
+                dieimage.x = bird.x-123;
+                dieimage.y = bird.y-75
+                dieimage.zindex=-1
+                dieimage.alpha=0
+              
+                stage.addChild(dieimage)
+
+                stage.addChild(pipes)
+                coins = new createjs.Container(); 
+                stage.addChild(coins)
+
+              //  home = new createjs.Bitmap(loader.getResult("home"));
+              //  intro = new createjs.Bitmap(loader.getResult("intro"));
+                ready = new createjs.Bitmap(loader.getResult("ready"));
+               // diePage = new createjs.Bitmap(loader.getResult("diepage"));
+                level1Page = new createjs.Container();
+                level2Page = new createjs.Container();
+                level3Page = new createjs.Container();
+
+                
+             
+
+                container = new createjs.Container();
+                introCointainer = new createjs.Container();
+                readycontainer= new createjs.Container();
+                home=new createjs.Container();
+                diePage = new createjs.Container();
+                levelCointainer = new createjs.Container();
+                introBg = new createjs.Shape();
+                introBg.graphics.beginFill('rgba(14, 2, 16,.7)');
+                introBg.graphics.drawRect(0, 0, w, h);
+                introBg.graphics.endFill();
+                introCointainer.addChild(introBg)
+                
+                
+               // intro.addChild(introCointainer)
+
+               createintroPage();
+               createHomePage()
+
+
+
+
+                 
+               // container.addChild(introCointainer);
+                container.addChild(home);
+               // container.scaleX = container.scaleY = w/home.image.width;
+                container.zindex=1000
+
+               
+
+
+
+
+                stage.addChild(container)
+
+                
+
+               
+
+                play = new createjs.Shape();
+                play.graphics.beginFill('rgba(255, 0, 0,0.01)');
+                play.graphics.drawRect(0, 0, w/2, 80);
+                play.graphics.endFill();
+              
+                
+                counter = new createjs.Text(0, "60px 'MontserratBold'", "#ffffff");
+                counterOutline = new createjs.Text(0, "60px 'MontserratBold'", "#ffffff");
+              
+                counterOutline.textAlign = 'center'
+                counter.textAlign = 'center'
+               
+                play.x = (w/2)
+                play.y = h-225
+                // counter.alpha = 0
+                // counterOutline.alpha = 0
+                coin = new createjs.Bitmap(loader.getResult("eorscoin"));
+                coin.x =  w-203
+                coin.y =  25
+
+                counterOutline.x = coin.x-50
+                counterOutline.y = 20
+                counter.x = coin.x-50
+                counter.y =  22
+
+                play.addEventListener("click", PlayClick,this);
+
+            
+
+                stage.addChild( counterOutline,coin,play)
+                createjs.Ticker.interval = 25;
+                createjs.Ticker.framerate = 40;
+                createjs.Ticker.timingMode = createjs.Ticker.RAF;
+             //   createjs.Ticker.timingMode = createjs.Ticker.RAF;
+                createjs.Ticker.addEventListener("tick", tick);
+
+
+            }
+
+            function createintroPage()
+            {
+
+                footerImage  = new createjs.Bitmap(loader.getResult("footer"));
+                 footerImage.x = 0;
+                 footerImage.y = h-175
+                 footerImage.width = w;
+                 footerImage.height = 80
+
+                footerText = new createjs.Text(footerTextValue, "26px 'ProximaNovaRegular'", "#ffffff");
+
+                footerText.x=w/2
+                footerText.y=h-90
+                footerText.width = w/2;
+                footerText.height=137;
+                footerText.lineWidth=w/2;
+                footerText.textAlign = 'center';
+
+                 var  IntroTitle = new createjs.Text(introTitleValue, "40px 'ProximaNovaSemibold'", "#ffffff");
+
+                IntroTitle.x=w/2
+                IntroTitle.y=h/2-200
+                IntroTitle.width = w/2;
+                IntroTitle.height=137;
+                IntroTitle.lineWidth=w/2;
+                IntroTitle.textAlign = 'center';
+
+                 var  Introsub1 = new createjs.Text(introSubtitle1Value, "33px 'ProximaNovaRegular'", "#ffffff");
+
+                Introsub1.x=w/2
+                Introsub1.y=h/2-100
+                Introsub1.width = w/2;
+                Introsub1.height=137;
+                Introsub1.lineWidth=w/1.2;
+                Introsub1.textAlign = 'center';
+
+                var  Introsub2 = new createjs.Text(introSubtitle2Value, "33px 'ProximaNovaRegular'", "#ffffff");
+
+                Introsub2.x=w/2
+                Introsub2.y=h/2+100
+                Introsub2.width = w/2;
+                Introsub2.height=137;
+                Introsub2.lineWidth=w/1.2;
+                Introsub2.textAlign = 'center';
+                            
+                
+  
+                introCointainer.addChild(footerImage)
+                introCointainer.addChild(footerText)
+                introCointainer.addChild(IntroTitle)
+                introCointainer.addChild(Introsub1)
+                introCointainer.addChild(Introsub2)
+                introCointainer.zindex=-100
+                home.zindex=100
+
+            }
+
+            function createDiePage()
+            {
+
+
+                 var introBg = new createjs.Shape();
+               introBg.graphics.beginFill('rgba(17, 4, 18,.4)');
+               introBg.graphics.drawRect(0, 0, w, h);
+               introBg.graphics.endFill();
+              
+                 var PlayGamebutton = new createjs.Bitmap(loader.getResult("bigbutton"));
+                 PlayGamebutton.x = w/2-(PlayGamebutton.image.width/2)  
+                 PlayGamebutton.y = h/2-(PlayGamebutton.image.height)  
+
+                var otherGamesbutton = new createjs.Bitmap(loader.getResult("bigbutton"));
+                otherGamesbutton.x = PlayGamebutton.x
+                otherGamesbutton.y = PlayGamebutton.y+PlayGamebutton.image.height+20
+
+                var  PlayGameText = new createjs.Text("PLAY AGAIN", "40px 'Montserrat-Regular'", "#ffffff");
+                PlayGameText.x= PlayGamebutton.x+140 
+                PlayGameText.y= PlayGamebutton.y+40
+
+                var  otherGamesText = new createjs.Text("OTHER GAMES", "40px 'Montserrat-Regular'", "#ffffff");
+                otherGamesText.x= otherGamesbutton.x+120
+                otherGamesText.y= otherGamesbutton.y+40
+
+                 var  oopsText = new createjs.Text("OOPS", "50px 'Montserrat-SemiBold'", "#ffffff");
+                 oopsText.x= PlayGamebutton.x+180 
+                 oopsText.y= PlayGamebutton.y-80
+
+                diePage.addChild(introBg)
+               
+                diePage.addChild(footerImage)
+                diePage.addChild(footerText)
+
+                 diePage.addChild(PlayGamebutton)
+                diePage.addChild(otherGamesbutton)
+                diePage.addChild(PlayGameText)
+                diePage.addChild(otherGamesText)
+                diePage.addChild(oopsText)
+
+
+
+            }
+            function createHomePage()
+            {
+
+
+                 var smallbutton = new createjs.Bitmap(loader.getResult("smallbutton"));
+                 smallbutton.x = w/2+20
+                 smallbutton.y =  h-250
+                 var smallbutton1 = new createjs.Bitmap(loader.getResult("smallbutton"));
+                 smallbutton1.x = 20
+                 smallbutton1.y =  h-250
+
+                var  PlayGameText = new createjs.Text("PLAY GAME", "30px 'Montserrat-Regular'", "#ffffff");
+                PlayGameText.x= smallbutton.x+100
+                PlayGameText.y= smallbutton.y+20
+
+                var  SigninText = new createjs.Text("SIGN IN", "30px 'Montserrat-Regular'", "#ffffff");
+                SigninText.x= smallbutton1.x+120
+                SigninText.y= smallbutton1.y+20
+
+                 
+
+                
+                 var ballonbig = new createjs.Bitmap(loader.getResult("ballonbig"));
+                 ballonbig.x = w/2-(ballonbig.image.width/2)
+                 ballonbig.y =  h/2-(ballonbig.image.height/2)
+
+                var  FloppyBallon = new createjs.Text("FLOPPY BALLON", "80px 'MontserratBold'", "#ffffff");
+
+                FloppyBallon.x=w/2
+                FloppyBallon.y=h/2-200
+                FloppyBallon.width = w/2;
+                FloppyBallon.height=137;
+                FloppyBallon.lineWidth=w/1.2;
+                FloppyBallon.textAlign = 'center';              
+                home.addChild(footerImage,footerText,ballonbig,FloppyBallon,smallbutton,smallbutton1,SigninText,PlayGameText)
+
+
+            }
+
+            function createReadyPage()
+            {
+
+                
+
+                ReadyText = new createjs.Text("READY", "100px 'MontserratBold'", "#ffffff");
+                ReadyText.x=w/2
+                ReadyText.y=h/2
+                ReadyText.width = w/2;
+                ReadyText.height=137;
+                ReadyText.lineWidth=w/2;
+                ReadyText.textAlign = 'center';
+
+                readycontainer.addChild(ReadyText)
+
+            }
+
+
+
+            function PlayClick(e) 
+            {
+                introCointainer.addChild(footerImage,footerText)
+                stage.addChild(introCointainer)
+                container.removeChild(home)
+                stage.removeChild(play)
+                var t = setTimeout(function () 
+                {
+                    stage.removeChild(introCointainer)
+                    createReadyPage()
+                    t = setTimeout(function () { ReadyText.text="3" ;stage.update() }, 500);
+                    t = setTimeout(function () { ReadyText.text="2";stage.update() }, 1000);
+                    t = setTimeout(function () { ReadyText.text="1" ;stage.update()}, 1500);
+                    t = setTimeout(function () { ReadyText.text="GO" ;stage.update()}, 2000);
+
+                    stage.addChild(readycontainer)
+
+                }, 2000);
+
+                 t = setTimeout(function ()
+                {
+                    stage.removeChild(readycontainer)
+                    bird.zindex=-50
+                    stage.addChild(bird);
+                    stage.addEventListener("stagemousedown", handleJumpStart);
+                    handleJumpStart()
+                }, 4500);
+
+                stage.update()
+                    console.log(e.target.name + ' was double clicked!');
+            }
+
+            function level1Complete()
+            {
+                afterlevel=true
+
+                 createjs.Ticker.interval = 15;
+                createjs.Ticker.framerate = 40;
+                deltamsvalue=800
+   
+
+                
+                level1Page.addChild(introBg)
+
+                  var LeveltwoButton = new createjs.Bitmap(loader.getResult("bigbutton"));
+                  LeveltwoButton.x = w/2-(LeveltwoButton.image.width/2)  
+                  LeveltwoButton.y = h/2
+
+                   var Redeembutton = new createjs.Bitmap(loader.getResult("bigbutton"));
+                   Redeembutton.x = LeveltwoButton.x
+                   Redeembutton.y = LeveltwoButton.y+LeveltwoButton.image.height+20
+
+                var  PlayGameText = new createjs.Text("LEVEL 2", "40px 'Montserrat-Regular'", "#ffffff");
+                PlayGameText.x= LeveltwoButton.x+170
+                PlayGameText.y= LeveltwoButton.y+35
+
+                var  SigninText = new createjs.Text("REDEEM", "40px 'Montserrat-Regular'", "#ffffff");
+                SigninText.x= Redeembutton.x+170
+                SigninText.y= Redeembutton.y+35
+
+                 var  woohooText = new createjs.Text("WOOHOO!", "50px 'Montserrat-SemiBold'", "#ffffff");
+                 woohooText.x= LeveltwoButton.x+145 
+                 woohooText.y= LeveltwoButton.y-240
+
+                 var  level1BonusText = new createjs.Text("You completed Level1 Here are 50 extra coins for your amazing skills You have collected 100 EORS Coins so far.", "30px 'ProximaNovaRegular'", "#ffffff");
+                 level1BonusText.x= w/2
+                 level1BonusText.y= LeveltwoButton.y-160
+                 level1BonusText.width = w/1.2;
+                level1BonusText.height=137;
+                level1BonusText.lineWidth=w/1.2;
+                level1BonusText.lineHeight=50;
+                level1BonusText.textAlign = 'center';
+
+
+
+
+
+
+
+
+                 level1Page.addChild(LeveltwoButton)
+                 level1Page.addChild(Redeembutton)
+                 level1Page.addChild(PlayGameText)
+                 level1Page.addChild(SigninText)
+                 level1Page.addChild(woohooText)
+                 level1Page.addChild(level1BonusText)
+                 level1Page.addChild(footerImage)
+                 level1Page.addChild(footerText)
+                 
+                
+              
+                level1=true
+                counter.text = counter.text + 50
+                counterOutline.text = counterOutline.text +  50
+                createjs.Tween.removeTweens ( bird )
+                stage.removeAllEventListeners();
+                resumeAgain = new createjs.Shape();
+                resumeAgain.graphics.beginFill('rgba(255, 0, 0,.01)');
+                resumeAgain.graphics.drawRect(LeveltwoButton.x, LeveltwoButton.y, LeveltwoButton.image.width,  LeveltwoButton.image.height);
+                resumeAgain.graphics.endFill();
+                resumeAgain.addEventListener("click", resumeGame,this);
+                level1Page.addChild(resumeAgain)
+                levelCointainer.addChild(level1Page)
+                stage.addChild(levelCointainer)
+                started=false
+                diePage.zindex=100
+                level1Page.zindex=101
+                container.zindex=100    
+            }
+            function level2Complete()
+            {
+                afterlevel=true
+
+                createjs.Ticker.interval = 10;
+                createjs.Ticker.framerate = 40;
+                deltamsvalue=600
+              
+                level2=true
+                counter.text = counter.text + 75
+                counterOutline.text = counterOutline.text +  75
+                createjs.Tween.removeTweens ( bird )
+                stage.removeAllEventListeners();
+                
+
+                level2Page.addChild(introBg)
+
+                var LeveltwoButton = new createjs.Bitmap(loader.getResult("bigbutton"));
+                LeveltwoButton.x = w/2-(LeveltwoButton.image.width/2)  
+                LeveltwoButton.y = h / 2
+
+                var Redeembutton = new createjs.Bitmap(loader.getResult("bigbutton"));
+                Redeembutton.x = LeveltwoButton.x
+                Redeembutton.y = LeveltwoButton.y + LeveltwoButton.image.height + 20
+
+                var PlayGameText = new createjs.Text("LEVEL 3", "40px 'Montserrat-Regular'", "#ffffff");
+                PlayGameText.x = LeveltwoButton.x + 170
+                PlayGameText.y = LeveltwoButton.y + 35
+
+                var SigninText = new createjs.Text("REDEEM", "40px 'Montserrat-Regular'", "#ffffff");
+                SigninText.x = Redeembutton.x + 170
+                SigninText.y = Redeembutton.y + 35
+
+                var woohooText = new createjs.Text("WOO!", "50px 'Montserrat-SemiBold'", "#ffffff");
+                woohooText.x = LeveltwoButton.x + 175
+                woohooText.y = LeveltwoButton.y - 240
+
+                var level1BonusText = new createjs.Text("You completed Level2 Here are 75 extra coins for your amazing skills   You are doing great and have  have collected 250 EORS Coins so far.", "30px 'ProximaNovaRegular'", "#ffffff");
+                level1BonusText.x = w / 2
+                level1BonusText.y = LeveltwoButton.y - 160
+                level1BonusText.width = w / 1.2;
+                level1BonusText.height = 137;
+                level1BonusText.lineWidth = w / 1.2;
+                level1BonusText.lineHeight = 50;
+                level1BonusText.textAlign = 'center';
+
+                resumeAgain = new createjs.Shape();
+                resumeAgain.graphics.beginFill('rgba(255, 0, 0,.01)');
+                resumeAgain.graphics.drawRect(LeveltwoButton.x, LeveltwoButton.y, LeveltwoButton.image.width,  LeveltwoButton.image.height);
+                resumeAgain.graphics.endFill();
+
+                resumeAgain.addEventListener("click", resumeGame,this);
+
+
+
+
+
+
+
+
+                level2Page.addChild(LeveltwoButton)
+                level2Page.addChild(Redeembutton)
+                level2Page.addChild(PlayGameText)
+                level2Page.addChild(SigninText)
+                level2Page.addChild(woohooText)
+                level2Page.addChild(level1BonusText)
+                level2Page.addChild(footerImage)
+                level2Page.addChild(footerText)
+                level2Page.addChild(resumeAgain)
+
+                levelCointainer.addChild(level2Page)
+                stage.addChild(levelCointainer)
+
+               
+                started=false
+                level2Page.zindex=101
+                container.zindex=100   
+
+            }
+            function level3Complete()
+            {
+
+                createjs.Ticker.interval = 5;
+                createjs.Ticker.framerate = 40;
+                deltamsvalue=400
+                afterlevel=true
+                 level3Page.addChild(introBg)
+                 bird.alpha=0
+                level3=true
+                counter.text = counter.text + 100
+                counterOutline.text = counterOutline.text +  100
+
+                var Redeembutton = new createjs.Bitmap(loader.getResult("bigbutton"));
+                Redeembutton.x = w / 2 - (Redeembutton.image.width / 2)
+                Redeembutton.y = h/2+50
+
+                var  redeemAction = new createjs.Shape();
+                 redeemAction.graphics.beginFill('rgba(255, 0, 0,.01)');
+                 redeemAction.graphics.drawRect(Redeembutton.x, Redeembutton.y, Redeembutton.image.width, Redeembutton.image.height);
+                 redeemAction.graphics.endFill();
+                 redeemAction.addEventListener("click", redeempoints,this);
+
+                var SigninText = new createjs.Text("REDEEM  NOW", "40px 'Montserrat-Regular'", "#ffffff");
+                SigninText.x = Redeembutton.x + 100
+                SigninText.y = Redeembutton.y + 35
+
+
+
+                var woohooText = new createjs.Text("YOU DID IT!", "50px 'Montserrat-SemiBold'", "#ffffff");
+                woohooText.x = Redeembutton.x + 125
+                woohooText.y = Redeembutton.y - 250
+
+
+
+                  var level3BonusText = new createjs.Text("You cleared all the levels. You get extra 100 points for you fantastic skills. You collected 700  EORS Coins.", "30px 'ProximaNovaRegular'", "#ffffff");
+                  level3BonusText.x = w / 2
+                  level3BonusText.y = Redeembutton.y - 160
+                  level3BonusText.width = w / 1.2;
+                  level3BonusText.height = 137;
+                  level3BonusText.lineWidth = w / 1.2;
+                  level3BonusText.lineHeight = 50;
+                 level3BonusText.textAlign = 'center';
+
+                 level3Page.addChild(Redeembutton,redeemAction)
+                 level3Page.addChild(SigninText)
+                 level3Page.addChild(woohooText)
+                 level3Page.addChild(level3BonusText)
+                 level3Page.addChild(footerImage,footerText)
+
+
+                 levelCointainer.addChild(level3Page)
+                 stage.addChild(levelCointainer)
+
+
+
+
+
+                createjs.Tween.removeTweens ( bird )
+                stage.removeAllEventListeners();
+                container.addChild(level3Page)
+                started=false
+                level3Page.zindex=101
+                stage.zindex=100   
+
+            }
+            function resumeGame()
+            {
+               
+                bird.alpha=1;
+                container.removeAllChildren()
+                stage.removeChild(resumeAgain)
+                stage.removeChild(levelCointainer)
+                levelCointainer.removeAllChildren()
+               
+                var t = setTimeout(function () {
+                    start = true
+                  
+                    stage.addEventListener("stagemousedown", handleJumpStart);
+                    stage.update()
+                    handleJumpStart()
+                }, 1000);
+
+                 var t = setTimeout(function () {
+                    afterlevel=false
+                }, 2000);
+
+              
+               
+               
+
+
+            }
+
+            function redeempoints()
+            {
+               console.log("redeem points == "+counter.text)
+            }
+
+
+            function handleKeyDown(e) 
+            {
+                //cross browser issues exist
+                if(!e){ var e = window.event; }
+                switch(e.keyCode) {
+                    case KEYCODE_SPACE: handleJumpStart();
+                }
+            }
+
+            function handleJumpStart() {
+                if (!dead) {
+                    createjs.Tween.removeTweens ( bird )
+                    bird.gotoAndPlay("jump");
+                    startJump = true
+                    if (!started) {
+                        started = true
+                        counterShow = true                        
+                    }
+                }
+            }
+
+            function diveBird() {
+                bird.gotoAndPlay("dive");
+            }
+
+            function restart() 
+            {
+                //hide anything on stage and show the score
+                container.removeAllChildren()
+                stage.removeChild(playAgain)
+                stage.removeChild(diePage)
+                pipes.removeAllChildren();
+                coins.removeAllChildren();
+
+                deltamsvalue=1000;
+
+               
+                counter.text = 0
+                counterOutline.text = 0
+                counterOutline.alpha = 0
+                counter.alpha = 0
+              //  counterShow = false
+                pipeDelay = masterPipeDelay
+                dead = false
+                started = false
+                startJump = false
+                level1=false;
+                level2=false;
+                level3=false;
+                createjs.Tween.removeTweens ( bird )
+                bird.x = startX
+                bird.y = startY
+                bird.rotation = 0
+                dieimage.alpha = 0
+                bird.alpha=1;
+                var t = setTimeout(function () {
+                    createjs.Tween.get(bird, {loop:true}).to({y:startY + wiggleDelta}, 380, createjs.Ease.sineInOut).to({y:startY}, 380, createjs.Ease.sineInOut);
+                stage.addChild(bird);
+                stage.addEventListener("stagemousedown", handleJumpStart);
+                handleJumpStart()
+                }, 1000);
+                
+              
+
+           }
+
+            function die() 
+            {
+
+                if(afterlevel)
+                {
+                
+                    return
+                }
+             
+               
+        //        console.log("die")
+        //    return
+
+                createDiePage();
+               
+
+              
+                
+                dead = true
+                bird.gotoAndPlay("dive");
+
+                dieimage.x = bird.x-123;
+                dieimage.y = bird.y-75
+                dieimage.zindex=-1
+                bird.zindex=-1               
+                dieimage.alpha=1
+                bird.alpha=0;
+               
+
+
+                // var dieBallon = queue.getResult("balloondie");
+                // bird.image=dieBallon;
+                createjs.Tween.removeTweens ( bird )
+               
+    
+              
+                playAgain = new createjs.Shape();
+                playAgain.graphics.beginFill('rgba(255, 0, 0,.01)');
+                playAgain.graphics.drawRect(0, 0, w/1.2, 120);
+                playAgain.graphics.endFill();
+                playAgain.x=80
+                playAgain.y =h/2-130
+                playAgain.addEventListener("click", restart,this);
+                diePage.addChild(playAgain)
+                //stage.addChild(start)
+                var t = setTimeout(function () 
+                {
+                    stage.addChild(diePage)
+                }, 1000);
+                afterlevel=true
+                var t = setTimeout(function () {
+                    afterlevel=false
+                }, 2000);
+
+               
+                diePage.zindex=100
+                container.zindex=100    
+            }
+            function removeStart() {
+                stage.removeChild(start)
+                stage.removeChild(share)
+            }
+            function addClickToStart() {
+                start.addEventListener("click", restart);
+               // share.addEventListener("click", goShare);
+            }
+
+            function goShare() {
+                var countText
+                if (counter.text == 1) {
+                    countText = "1 point"
+                } else {
+                    countText = counter.text + " points"
+                }
+             //   window.open("https://twitter.com/share?url=http%3A%2F%2Fmaxmcd.com%2Ffb%2F&text=I scored " + countText +  " on HTML5 Flappy Bird.");
+            }
+
+            function tick(event) {
+              //  console.log("total time: "+createjs.Ticker.getTime());
+
+                var deltaS = event.delta/deltamsvalue;
+
+               var l = pipes.children.length;
+               var coinl= coins.children.length;
+
+                if (bird.y > (ground.y - 40)) 
+                {
+                    if (!dead) 
+                    {
+                        die()
+                    }
+                    if (bird.y > (ground.y - 30)) 
+                    {
+                       // createjs.Tween.removeTweens ( bird )
+                    }
+                }
+                else  if (bird.y < 40) 
+                {
+                    if (!dead) 
+                    {
+                        die()
+                    }
+                    if (bird.y > (ground.y - 30)) 
+                    {
+                        createjs.Tween.removeTweens ( bird )
+                    }
+                }
+                
+                
+                if (!dead)
+                {
+                    ground.x = (ground.x-deltaS*300) % ground.tileW;
+                    background.x = (background.x - deltaS*300)%background.tileW;
+                
+                }
+            
+
+                if (started && !dead) 
+                {
+                    if (pipeDelay == 0) 
+                    {
+
+                       
+                        
+                         coin2 = new createjs.Bitmap(loader.getResult("coin2"));
+                         coin2_2 = new createjs.Bitmap(loader.getResult("coin2"));
+                         coin5 = new createjs.Bitmap(loader.getResult("coin5"));
+                         coin10 = new createjs.Bitmap(loader.getResult("coin10"));
+                         coin2.value=2;
+                         coin2_2.value=2;
+                         coin5.value=5;
+                         coin10.value=10;
+
+                       
+
+                        pipe = new createjs.Bitmap(loader.getResult("pipe"));
+                        pipe.x = w +Math.floor(Math.random() * (w/2)-150)+150
+                        pipe.y = (ground.y - gap*2.1) * Math.random() + gap*1.5
+                        pipes.addChild(pipe);
+
+                        pipe2 = new createjs.Bitmap(loader.getResult("pipe"));
+                        pipe2.scaleX = -1
+                        pipe2.rotation = 180
+                        pipe2.x = pipe.x+ Math.floor(Math.random() * (w/2)-150)+150    //+ pipe.image.width
+                        pipe2.y = pipe.y - gap
+
+                        var coinplaces= Math.floor(Math.random() * 8)
+    
+                        coin2.x=  Math.floor(Math.random() * w)+w
+                        coin2.y=  Math.floor(Math.random() * h-200)+200
+                        coin2_2.x=  Math.floor(Math.random() * w)+w
+                        coin2_2.y=  Math.floor(Math.random() * h-200)+200
+                        coins.addChild(coin2)
+                        coins.addChild(coin2_2)
+
+
+                       
+
+                        
+
+                         if(coinplaces==0||coinplaces==4)
+                         {
+                            coin10.x=pipe.x-(coin10.image.width*2)
+                            coin10.y=h-80
+                            coins.addChild(coin10)
+                            coin5.x=pipe2.x+35
+                            coin5.y=pipe2.y
+                            coins.addChild(coin5)
+
+                          }
+                        else if(coinplaces==1||coinplaces==5)
+                        {
+                            coin5.x=pipe.x+35
+                            coin5.y=pipe.y-coin5.image.height-10
+                            coins.addChild(coin5)
+                            coin10.x=pipe2.x+(coin10.image.width*2)
+                            coin10.y=20
+                            coins.addChild(coin10)
+
+                        }
+                        else if(coinplaces==2||coinplaces==6)
+                        {
+                            coin10.x=pipe2.x-(coin10.image.width*2)
+                            coin10.y=20
+                            coins.addChild(coin10)
+                            coin5.x=pipe.x+35
+                            coin5.y=pipe.y-coin5.image.height-10
+                            coins.addChild(coin5)
+
+                        }
+                        else if(coinplaces==3||coinplaces==7)
+                        {
+                            coin5.x=pipe2.x+35
+                            coin5.y=pipe2.y
+                            coins.addChild(coin5)
+                            coin10.x=pipe.x-(coin10.image.width*2)
+                            coin10.y=h-80
+                            coins.addChild(coin10)
+
+                        }
+
+                      
+                        pipes.addChild(pipe2);
+                        pipeDelay = masterPipeDelay
+
+                    } 
+                    else 
+                    {
+                        pipeDelay = pipeDelay - 1
+                    }
+                    for(var i = 0; i < l; i++) 
+                    {
+                        pipe = pipes.getChildAt(i);
+                        if (pipe) 
+                        {
+                            if (true) 
+                            { // tried replacing true with this, but it's off: pipe.x < bird.x + 92 && pipe.x > bird.x 
+                                var collision = ndgmr.checkRectCollision(pipe,bird,1,true)
+                                if (collision) 
+                                {
+                                    if (collision.width > 50 && collision.height > 20) 
+                                    {
+                                     die()
+                                    }
+                                }
+                            }
+                            pipe.x = (pipe.x - deltaS*300);
+                            if (pipe.x + pipe.image.width <= -pipe.w) 
+                            { 
+                                pipes.removeChild(pipe)
+                            }
+                        }
+                       
+                    }
+                    for(var i = 0; i < coinl; i++) 
+                    {
+            
+                        coin = coins.getChildAt(i);
+                        if (coin) 
+                        {
+                            if (true) 
+                            { // tried replacing true with this, but it's off: pipe.x < bird.x + 92 && pipe.x > bird.x 
+                                var collision = ndgmr.checkRectCollision(coin,bird,1,true)
+                                if (collision) 
+                                {
+                                    if (collision.width > 8 && collision.height > 8 &&  coin.name != "counted") 
+                                    {
+                                         coin.name = "counted" //using the pipe name to count pipes
+                                         counter.text = counter.text + coin.value
+                                         counterOutline.text = counterOutline.text + coin.value
+                                         coins.removeChild(coin)
+                                         if(!level1)
+                                         {
+                                            if(counter.text >99)
+                                            {
+                                               level1Complete()
+                                            }
+                                         }
+                                         else if(!level2)
+                                         {
+                                            if(counter.text >249)
+                                            {
+                                                level2Complete()
+                                            }
+                                         }
+                                         else if(!level3)
+                                         {
+                                            if(counter.text >699)
+                                            {
+                                                level3Complete()
+                                            }
+                                         }
+
+                                    }
+                                }
+                            }
+                            coin.x = (coin.x - deltaS*300);
+                           
+                            if (coin.x <= 338 && coin.rotation == 0 && coin.name != "counted") 
+                            {
+                               
+                            }
+                            if (coin.x + coin.image.width <= -coin.w) 
+                            { 
+                                coins.removeChild(coin)
+                            }
+                        }
+                    }
+                    if (counterShow) {
+                        counter.alpha = 1
+                        counterOutline.alpha = 1
+                        counterShow = false
+                    }
+
+                }
+
+
+
+                if (startJump == true) 
+                {
+                    startJump = false
+                    bird.framerate = 60;
+                    bird.gotoAndPlay("fly");
+                    if (bird.roation < 0) 
+                    {
+                        rotationDelta = (-bird.rotation - 20)/5
+                    } else {
+                        rotationDelta = (bird.rotation + 20)/5
+                    }
+                    if (bird.y < 0) 
+                    {
+                        bird.y = 0
+                    }
+                    createjs
+                        .Tween
+                        .get(bird)
+                        .to({y:bird.y - rotationDelta, rotation: 0}, rotationDelta, createjs.Ease.linear) //rotate to jump position and jump bird
+                        .to({y:bird.y - jumpAmount, rotation: 0}, jumpTime - rotationDelta, createjs.Ease.quadOut) //rotate to jump position and jump bird
+                        .to({y:bird.y}, jumpTime, createjs.Ease.quadIn) //reverse jump for smooth arch
+                        .to({y:bird.y + 200, rotation: 0}, (380)/1.5, createjs.Ease.linear) //rotate back
+                        .call(diveBird) // change bird to diving position
+                        .to({y:ground.y - 30}, (h - (bird.y+200))/1.5, createjs.Ease.linear); //drop to the bedrock
+                }
+
+                
+                stage.update(event);
+            }
+            
+        </script>
+    </head>
+    <body   align="center" onload="init();">
+        <canvas id="testCanvas" width="768" height="1222"></canvas>
+    </body>
+</html>

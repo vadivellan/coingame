@@ -1,0 +1,51 @@
+@font-face {
+    font-family: Realist;
+    src: url('../../../assets/font/Realist/Realist.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: Oswald_Light;
+    src: url('../../../assets/fonts/Oswald/Oswald-Light.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: Whitney-Light-Bas;
+    src: url('../../../assets/fonts/Whitney/Whitney-Light-Bas.otf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: Quicksand-Regular;
+    src: url('../../../assets/fonts/Quicksand/Quicksand-Regular.otf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+@font-face {
+    font-family: ProximaNovaRegular;
+    src: url('../../../assets/fonts/Proxima-nova/ProximaNovaRegular.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: ProximaNovaSemibold;
+    src: url('../../../assets/fonts/Proxima-nova/ProximaNova-Semibold.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: MontserratBold;
+    src: url('../../../assets/fonts/Montserrat/Montserrat-Bold.otf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+
+
